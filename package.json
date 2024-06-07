@@ -10,8 +10,6 @@
     "mongoose": "^8.4.0"
   },
   "scripts": {
-    "start": "node src/index.js"
-  },
-  "author": "",
-  "license": "ISC"
+    "start": "nodemon server.js"
+  }
 }
