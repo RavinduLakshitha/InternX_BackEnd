@@ -6,7 +6,7 @@ const studentProfiles = require('./src/routes/studentProfile');
 require('dotenv').config();
 
 const app = express();
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 8000;
 
 // Connect to MongoDB
 connectDB();
