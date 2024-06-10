@@ -1,26 +1,26 @@
 const express = require("express");
+const cors = require("cors");
+const dotenv = require ("dotenv").config();
+const {mongoose} = require ('mongoose');
+
+
 const app = express();
-const path = require("path");
-const hbs = require("hbs");
-const collection = require("./mongodb");
 
+const PORT = 8000;
 
-const templatePath = path.join(__dirname, "../tempelates");
+mongoose
+  .connect(process.env.DB_URL,{ useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => {
+    console.log("DB connected");
+  })
+  .catch((err) => console.log("DB connection error"));
 
-app.use(express.json());
-app.set("view engine", "hbs");
-app.set("views", templatePath);
-app.use(express.urlencoded({ extended: fals }));
-
-app.get("/", (req, res) => {
-  res.render("login");
+app.listen(PORT, () => {
+  console.log("App is running on ${PORT}");
 });
 
-app.post("/login", async (req, res) => {
-  const data = {
-    name: req.body.name,
-    password: req.body.password,
-  };
 
-  await collection.insertMany([data]);
-});
+
+
+
+
