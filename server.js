@@ -5,7 +5,7 @@ const mongoose = require("mongoose");
 
 const app = express();
 
-const PORT = 3000;
+const PORT = 8000;
 
 mongoose
   .connect(process.env.DB_URL,{ useNewUrlParser: true, useUnifiedTopology: true })
@@ -15,5 +15,5 @@ mongoose
   .catch((err) => console.log("DB connection error"));
 
 app.listen(PORT, () => {
-  console.log("App is running on ${3000}");
+  console.log("App is running on ${PORT}");
 });
