@@ -2,9 +2,9 @@ const express = require("express");
 const cors = require("cors");
 const dotenv = require("dotenv").config();
 const { mongoose } = require("mongoose");
-app.use(express.json());
 
 const app = express();
+app.use(express.json());
 
 const PORT = 8000;
 
@@ -19,8 +19,8 @@ mongoose
   .catch((err) => console.log("DB connection error"));
 
 app.listen(PORT, () => {
-  console.log("App is running on ${PORT}");
+  console.log(`App is running on ${PORT}`);
 });
 
-const userRoute = require("./route/authRouter");
-app.use("/user", authRouter);
+const userRoute = require("../routes/authRoutes");
+app.use("/user", userRoute);
