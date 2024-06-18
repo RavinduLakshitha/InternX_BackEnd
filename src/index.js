@@ -18,6 +18,12 @@ mongoose.connect('mongodb+srv://kushana:Izn5o0iC865jB8yg@cluster0.erqc8h4.mongod
 .then(() => console.log('Connected to MongoDB'))
 .catch(err => console.error('Could not connect to MongoDB', err));
 
+app.use('/api', advertisementRoutes);
+
+app.get('/displayData', (req, res) => {
+  res.json(data_product);
+});
+
 app.listen(port, () => {
   console.log(`Server listening on port ${port}`);
 });
