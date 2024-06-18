@@ -4,19 +4,26 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const advertisementRoutes = require('../routes/advertismentRoutes');
 const data_product = require('../data');
+const dotenv = require("dotenv").config();
 
 const app = express();
-const port = process.env.PORT || 4000;
+const port = process.env.PORT || 8000;
 
 app.use(cors());
 app.use(bodyParser.json());
 
-mongoose.connect('mongodb+srv://kushana:Izn5o0iC865jB8yg@cluster0.erqc8h4.mongodb.net/ReactCardInternX?retryWrites=true&w=majority&appName=Cluster0', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-})
-.then(() => console.log('Connected to MongoDB'))
-.catch(err => console.error('Could not connect to MongoDB', err));
+console.log(`Connecting to DB with URL: ${process.env.DB_URL}`);
+
+mongoose
+  .connect(process.env.DB_URL, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  .then(() => {
+    console.log("DB connected");
+  })
+  .catch((err) => console.log("DB connection error"));
+
 
 app.use('/api', advertisementRoutes);
 
