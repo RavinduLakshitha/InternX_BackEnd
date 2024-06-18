@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const advertisementController = require('../controller/advertismentController');
+const advertisementController = require('../controllers/advertismentController');
 
 router.post('/submit-add', advertisementController.submitAdvertisement);
 

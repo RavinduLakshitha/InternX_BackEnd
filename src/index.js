@@ -2,8 +2,8 @@ const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
-const advertisementRoutes = require('./routes/advertismentRoutes');
-const data_product = require('./data');
+const advertisementRoutes = require('../routes/advertismentRoutes');
+const data_product = require('../data');
 
 const app = express();
 const port = process.env.PORT || 4000;
