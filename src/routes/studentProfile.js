@@ -1,12 +1,37 @@
 const express = require('express');
 const router = express.Router();
-const StudentProfile = require('../models/StudentProfile'); 
+const multer = require('multer');
+const StudentProfile = require('../models/StudentProfile');
+
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, 'uploads/');
+  },
+  filename: function (req, file, cb) {
+    cb(null, `${Date.now()}-${file.originalname}`);
+  }
+});
+
+const upload = multer({ storage: storage });
 
 // Create a new student profile
-router.post('/profiles', async (req, res) => {
+router.post('/profiles', upload.fields([{ name: 'profilePicture' }, { name: 'resume' }]), async (req, res) => {
   try {
-    console.log("Request body:", req.body); 
-    const profile = new StudentProfile(req.body);
+    const { name, email, mobile, address, workExperience, education } = req.body;
+    const profilePicture = req.files['profilePicture'] ? req.files['profilePicture'][0].path : '';
+    const resume = req.files['resume'] ? req.files['resume'][0].path : '';
+
+    const profile = new StudentProfile({ 
+      name, 
+      email, 
+      mobile, 
+      address, 
+      workExperience, 
+      education, 
+      profilePicture, 
+      resume 
+    });
+
     await profile.save();
     res.status(201).send(profile);
   } catch (error) {
@@ -41,9 +66,17 @@ router.get('/profiles/:id', async (req, res) => {
 });
 
 // Update a student profile by ID
-router.put('/profiles/:id', async (req, res) => {
+router.put('/profiles/:id', upload.fields([{ name: 'profilePicture' }, { name: 'resume' }]), async (req, res) => {
   try {
-    const profile = await StudentProfile.findByIdAndUpdate(req.params.id, req.body, { new: true, runValidators: true });
+    const { name, email, mobile, address, workExperience, education } = req.body;
+    const profilePicture = req.files['profilePicture'] ? req.files['profilePicture'][0].path : '';
+    const resume = req.files['resume'] ? req.files['resume'][0].path : '';
+
+    const updatedData = { name, email, mobile, address, workExperience, education };
+    if (profilePicture) updatedData.profilePicture = profilePicture;
+    if (resume) updatedData.resume = resume;
+
+    const profile = await StudentProfile.findByIdAndUpdate(req.params.id, updatedData, { new: true, runValidators: true });
     if (!profile) {
       return res.status(404).send();
     }
