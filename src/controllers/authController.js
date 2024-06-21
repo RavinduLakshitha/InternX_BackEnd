@@ -7,9 +7,10 @@ exports.createuser = async (req, res) => {
 
   const newUser = new User({ fullname, email, password });
 
-  const savedUser = await newUser.save();
-  res.status(201).json({
-    message: "User login successfully",
-    user: savedUser,
-  });
+  try {
+    await newUser.save();
+    res.status(201).send("Registered successfully!");
+  } catch (err) {
+    res.status(500).send("Registered not complete.");
+  }
 };
