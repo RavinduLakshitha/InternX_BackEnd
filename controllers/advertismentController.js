@@ -6,7 +6,7 @@ exports.submitAdvertisement = async (req, res) => {
 
   try {
     await newAdvertisement.save();
-    res.status(200).send('Post submitted successfully!');
+    res.status(201).send('Post submitted successfully!');
   } catch (err) {
     res.status(500).send('Error submitting post.');
   }
