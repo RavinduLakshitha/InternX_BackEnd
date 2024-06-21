@@ -1,18 +1,11 @@
-const express = require('express');
-const cors = require('cors');
-const mongoose = require('mongoose');
-const bodyParser = require('body-parser');
-const advertisementRoutes = require('../routes/advertismentRoutes');
-const data_product = require('../data');
+const express = require("express");
 const dotenv = require("dotenv").config();
+const { mongoose } = require("mongoose");
 
 const app = express();
-const port = process.env.PORT || 8000;
+app.use(express.json());
 
-app.use(cors());
-app.use(bodyParser.json());
-
-console.log(`Connecting to DB with URL: ${process.env.DB_URL}`);
+const PORT = 8000;
 
 mongoose
   .connect(process.env.DB_URL, {
@@ -24,13 +17,9 @@ mongoose
   })
   .catch((err) => console.log("DB connection error"));
 
-
-app.use('/api', advertisementRoutes);
-
-app.get('/displayData', (req, res) => {
-  res.json(data_product);
+app.listen(PORT, () => {
+  console.log(`App is running on ${PORT}`);
 });
 
-app.listen(port, () => {
-  console.log(`Server listening on port ${port}`);
-});
+const userRoute = require("./routes/authRoutes");
+app.use("/user", userRoute);
