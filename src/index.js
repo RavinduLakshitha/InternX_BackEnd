@@ -21,5 +21,5 @@ app.listen(PORT, () => {
   console.log(`App is running on ${PORT}`);
 });
 
-const userRoute = require("../routes/authRoutes");
+const userRoute = require("./routes/authRoutes");
 app.use("/user", userRoute);
