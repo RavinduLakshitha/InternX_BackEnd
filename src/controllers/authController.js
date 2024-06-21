@@ -1,4 +1,4 @@
-const User = require("../models/user");
+const User = require("../controllers/authController");
 
 exports.createuser = async (req, res) => {
   const email = req.body.email;
