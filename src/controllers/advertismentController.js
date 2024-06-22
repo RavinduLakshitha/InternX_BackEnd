@@ -18,6 +18,6 @@ exports.displayAdvetisements = async(req, res) =>{
     res.json(adds);
   }
   catch(err){
-    res.status(500).json({messahe:err.message});
+    res.status(500).json({message:err.message});
   }
 };
