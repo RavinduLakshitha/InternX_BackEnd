@@ -24,6 +24,9 @@ mongoose
   })
   .catch((err) => console.log("DB connection error"));
 
+const userRoute = require("./routes/authRoutes");
+app.use("/user", userRoute);
+
 
 app.use('/api', advertisementRoutes);
 
