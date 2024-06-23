@@ -14,3 +14,10 @@ exports.createuser = async (req, res) => {
     res.status(500).send("Registered not complete.");
   }
 };
+
+
+
+
+exports.Login = async (req, res) => {
+  res.status(201).send("login successfully!");
+};
