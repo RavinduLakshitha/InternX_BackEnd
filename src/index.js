@@ -1,11 +1,9 @@
 const express = require('express');
 const cors = require('cors');
-const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const advertisementRoutes = require('../src/routes/advertismentRoutes');
 const dotenv = require("dotenv").config();
 const { mongoose } = require("mongoose");
-const cors = require('cors');
 
 const app = express();
 app.use(express.json());
@@ -26,6 +24,6 @@ app.use("/user", userRoute);
 
 app.use('/api', advertisementRoutes);
 
-app.listen(port, () => {
-  console.log(`Server listening on port ${port}`);
+app.listen(PORT, () => {
+  console.log(`Server listening on port ${PORT}`);
 });
