@@ -1,10 +1,11 @@
 const express = require("express");
 const dotenv = require("dotenv").config();
 const { mongoose } = require("mongoose");
+const cors = require('cors');
 
 const app = express();
 app.use(express.json());
-
+app.use(cors());
 const PORT = 8000;
 
 mongoose
@@ -15,7 +16,7 @@ mongoose
   .then(() => {
     console.log("DB connected");
   })
-  .catch((err) => console.log("DB connection error"));
+  .catch((error) => console.log("DB connection error"));
 
 app.listen(PORT, () => {
   console.log(`App is running on ${PORT}`);
