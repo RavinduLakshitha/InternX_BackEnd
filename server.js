@@ -21,3 +21,4 @@ app.use('/api', studentProfiles);
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
 });
+
