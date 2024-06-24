@@ -12,8 +12,6 @@ const port = process.env.PORT || 8000;
 app.use(cors());
 app.use(bodyParser.json());
 
-console.log(`Connecting to DB with URL: ${process.env.DB_URL}`);
-
 mongoose
   .connect(process.env.DB_URL, {
     useNewUrlParser: true,
