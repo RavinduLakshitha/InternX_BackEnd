@@ -1,18 +1,14 @@
 const express = require('express');
 const cors = require('cors');
-const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const advertisementRoutes = require('../src/routes/advertismentRoutes');
 const dotenv = require("dotenv").config();
+const { mongoose } = require("mongoose");
 
 const app = express();
-const port = process.env.PORT || 8000;
-
+app.use(express.json());
 app.use(cors());
-app.use(bodyParser.json());
-
-console.log(`Connecting to DB with URL: ${process.env.DB_URL}`);
-
+const PORT = 8000;
 mongoose
   .connect(process.env.DB_URL, {
     useNewUrlParser: true,
@@ -21,13 +17,13 @@ mongoose
   .then(() => {
     console.log("DB connected");
   })
-  .catch((err) => console.log("DB connection error"));
+  .catch((error) => console.log("DB connection error"));
 
 const userRoute = require("./routes/authRoutes");
 app.use("/user", userRoute);
 
 app.use('/api', advertisementRoutes);
 
-app.listen(port, () => {
-  console.log(`Server listening on port ${port}`);
+app.listen(PORT, () => {
+  console.log(`Server listening on port ${PORT}`);
 });
