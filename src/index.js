@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const advertisementRoutes = require('../src/routes/advertismentRoutes');
+const studentProfiles = require('./src/routes/studentProfile');
 const dotenv = require("dotenv").config();
 const { mongoose } = require("mongoose");
 
@@ -23,6 +24,7 @@ const userRoute = require("./routes/authRoutes");
 app.use("/user", userRoute);
 
 app.use('/api', advertisementRoutes);
+app.use('/api', studentProfiles);
 
 app.listen(PORT, () => {
   console.log(`Server listening on port ${PORT}`);
