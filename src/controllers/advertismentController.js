@@ -21,3 +21,17 @@ exports.displayAdvetisements = async(req, res) =>{
     res.status(500).json({message:err.message});
   }
 };
+
+exports.getAdvertisementById = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const ad = await Advertisement.findById(id);
+    if (!ad) {
+      return res.status(404).json({ message: 'Advertisement Not Found' });
+    }
+    res.json(ad);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: err.message });
+  }
+};
