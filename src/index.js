@@ -22,8 +22,12 @@ mongoose
 const userRoute = require("./routes/authRoutes");
 app.use("/user", userRoute);
 
+const userRoute2 = require("./routes/registerduserRoutes");
+app.use("/user", userRoute2);
+
 app.use('/api', advertisementRoutes);
 app.use('/api', studentProfiles);
+
 
 app.listen(port, () => {
   console.log(`Server listening on port ${port}`);
