@@ -15,9 +15,3 @@ exports.createuser = async (req, res) => {
   }
 };
 
-
-
-
-exports.Login = async (req, res) => {
-  res.status(201).send("login successfully!");
-};
