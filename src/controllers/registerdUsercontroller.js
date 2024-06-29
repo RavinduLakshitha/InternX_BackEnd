@@ -7,14 +7,12 @@ exports.login = async (req, res) => {
   const newUser = new RegisterdUser({ email, password });
 
   try {
-    // Find the user by email
-    const user = await User.findOne({ email });
+    const user = await newUser.findOne({ email });
 
     if (!user) {
       return res.status(400).send("Invalid email or password.");
     }
 
-    // Compare the provided password with the stored password
     if (user.password !== password) {
       return res.status(400).send("Invalid email or password.");
     }
