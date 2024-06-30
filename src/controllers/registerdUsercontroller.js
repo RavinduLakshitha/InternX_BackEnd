@@ -1,7 +1,7 @@
-const RegisterdUser = require("../models/registereduser");
+const RegisterdUser = require('../models/registereduser')
 
 exports.login = async (req, res) => {
-  const email = req.body.email;
+  const email = req.body.toLoer;
   const password = req.body.password;
 
   const newUser = new RegisterdUser({ email, password });
