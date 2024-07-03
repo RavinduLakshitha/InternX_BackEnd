@@ -36,14 +36,12 @@ exports.getAdvertisementById = async (req, res) => {
   }
 };
 
-exports.deleteAdvertismentById =async(req, res)=>{
-  const {id} = req.params;
+exports.deleteAdvertismentById = async (req, res) => {
+  const { id } = req.params;
   try {
-   const add= await Advertisement.deleteRecordById(id);
-   res.status(200).json({ message: 'Advertisment deleted successfully' });
+    await Advertisement.deleteRecord(id);
+    res.status(200).json({ message: 'Advertisement deleted successfully' });
+  } catch (error) {
+    res.status(500).json({ message: 'Failed to delete the Advertisement', error: error.message });
   }
-  catch(error){
-    res.status(500).json({message:'Failed to delete the Advertisment'})
-
-  }
-}
+};
