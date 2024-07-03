@@ -33,6 +33,9 @@ const advertisementSchema= new mongoose.Schema(
     },
     { timestamps: true }// This option enables automatic management of createdAt and updatedAt fields
 );
+advertisementSchema.statics.deleteRecord = function (id) {
+    return this.findByIdAndDelete(id).exec();
+  };
 
 const Advertisment = mongoose.model('Advertisment', advertisementSchema);
 
