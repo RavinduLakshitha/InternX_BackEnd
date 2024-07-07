@@ -1,4 +1,4 @@
-const RegisteredUser = require('../models/registereduser');
+const User = require("../models/user");
 
 exports.login = async (req, res) => {
   const email = req.body.email;
@@ -6,13 +6,13 @@ exports.login = async (req, res) => {
   console.log(email, password);
 
   try {
-    const existingUser = await RegisteredUser.findOne({ email });
-
+    const existingUser = await User.findOne({ email });
+    console.log(existingUser);
     if (!existingUser) {
-      return res.status(400).send("Invalid email or password.");
+      return res.status(400).send("Email not found");
     }
     if (existingUser.password !== password) {
-      return res.status(400).send("Invalid email or password.");
+      return res.status(400).send("Invalid password.");
     }
 
     res.status(200).send("Login successfully!");
