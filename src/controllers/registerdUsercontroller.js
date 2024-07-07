@@ -1,18 +1,16 @@
-const RegisterdUser = require('../models/registereduser')
+const RegisteredUser = require('../models/registereduser');
 
 exports.login = async (req, res) => {
-  const email = req.body.toLoer;
+  const email = req.body.email.toLowerCase();
   const password = req.body.password;
 
-  const newUser = new RegisterdUser({ email, password });
-
   try {
-    const user = await RegisterdUser.findOne({ email });
+    const existingUser = await RegisteredUser.findOne({ email });
 
-    if (!user) {
+    if (!existingUser) {
       return res.status(400).send("Invalid email or password.");
     }
-    if (user.password !== password) {
+    if (existingUser.password !== password) {
       return res.status(400).send("Invalid email or password.");
     }
 
