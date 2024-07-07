@@ -1,8 +1,9 @@
 const RegisteredUser = require('../models/registereduser');
 
 exports.login = async (req, res) => {
-  const email = req.body.email.toLowerCase();
+  const email = req.body.email;
   const password = req.body.password;
+  console.log(email, password);
 
   try {
     const existingUser = await RegisteredUser.findOne({ email });
