@@ -1,10 +1,12 @@
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
-const advertisementRoutes = require('../src/routes/advertismentRoutes');
-const studentProfiles = require('../src/routes/studentProfile');
+const advertisementRoutes = require('./routes/advertismentRoutes');
+const studentProfiles = require('./routes/studentProfile');
 const mongoose = require("mongoose");
 const dotenv = require("dotenv").config();
+// const { SpeedInsights } = require("@vercel/speed-insights/react");
+
 
 const app = express();
 const port = process.env.PORT || 8000;
