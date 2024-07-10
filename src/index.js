@@ -13,7 +13,7 @@ const advertisementRoutes = require('../src/routes/advertismentRoutes');
 const studentProfiles = require('../src/routes/studentProfile');
 const companyProfiles = require('../src/routes/companyProfile');
 const mongoose = require("mongoose");
-const dotenv = require('dotenv').config();//removed existing code and change it
+require('dotenv').config();//removed existing code and change it
 const path = require('path');
 
 
