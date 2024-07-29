@@ -40,6 +40,9 @@ app.use("/user", userRoute);
 const userRoute2 = require("./routes/registerduserRoutes");
 app.use("/user", userRoute2);
 
+const router3 = require("./routes/companyRoutes");
+app.use("/company", router3);
+
 app.use('/api', advertisementRoutes);
 app.use('/api', studentProfiles);
 app.use('/api/company', companyProfiles);
