@@ -13,7 +13,7 @@ const resumeSchema = new mongoose.Schema(
         required: true
     },
     cv:{
-        type:File,
+        type:String,
         required:true
     }
 });
