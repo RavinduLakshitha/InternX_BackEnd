@@ -1,19 +1,23 @@
-const RegisterdUser = require('../models/registereduser')
+const User = require("../models/user");
+const bcrypt = require("bcryptjs");
 
 exports.login = async (req, res) => {
-  const email = req.body.toLoer;
-  const password = req.body.password;
-
-  const newUser = new RegisterdUser({ email, password });
+  const { email, password } = req.body;
 
   try {
-    const user = await RegisterdUser.findOne({ email });
+    const existingUser = await User.findOne({ email });
 
-    if (!user) {
-      return res.status(400).send("Invalid email or password.");
+    if (!existingUser) {
+      return res.status(400).send("Email not found");
     }
-    if (user.password !== password) {
-      return res.status(400).send("Invalid email or password.");
+
+    const isPasswordValid = await bcrypt.compare(
+      password,
+      existingUser.password
+    );
+
+    if (!isPasswordValid) {
+      return res.status(400).send("Invalid password.");
     }
 
     res.status(200).send("Login successfully!");

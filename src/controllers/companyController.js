@@ -1,18 +1,18 @@
-const User = require("../models/user");
-const bcrypt = require("bcryptjs");
+const Company = require("../models/company");
+const bcrypt = require('bcryptjs');
 
-exports.createuser = async (req, res) => {
-  const { fullname, email, password } = req.body;
+exports.createcompany = async (req, res) => {
+  const { companyname, email, password } = req.body;
 
   try {
     // Hash the password
     const hashedPassword = await bcrypt.hash(password, 10);
 
     // Create a new user instance with hashed password
-    const newUser = new User({ fullname, email, password: hashedPassword });
+    const newCompany = new Company({ companyname, email, password: hashedPassword });
 
     // Save the user to the database
-    await newUser.save();
+    await newCompany.save();
 
     res.status(201).send("Registered successfully!");
   } catch (err) {

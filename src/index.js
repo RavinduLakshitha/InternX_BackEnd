@@ -1,6 +1,15 @@
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
+
+
+// const advertisementRoutes = require('./routes/advertismentRoutes');
+// const studentProfiles = require('./routes/studentProfile');
+// const mongoose = require("mongoose");
+// const dotenv = require("dotenv").config();
+// // const { SpeedInsights } = require("@vercel/speed-insights/react");
+
+
 const advertisementRoutes = require('../src/routes/advertismentRoutes');
 const studentProfiles = require('../src/routes/studentProfile');
 const companyProfiles = require('../src/routes/companyProfile');
@@ -8,6 +17,8 @@ const resumeRoutes = require('./routes/resumeRoutes');
 const mongoose = require("mongoose");
 require('dotenv').config();//removed existing code and change it
 const path = require('path');
+
+
 
 const app = express();
 const port = process.env.PORT || 8000;
@@ -29,6 +40,9 @@ app.use("/user", userRoute);
 
 const userRoute2 = require("./routes/registerduserRoutes");
 app.use("/user", userRoute2);
+
+const router3 = require("./routes/companyRoutes");
+app.use("/company", router3);
 
 app.use('/api', advertisementRoutes);
 app.use('/api', studentProfiles);
