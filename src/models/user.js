@@ -13,6 +13,9 @@ const userShema = new mongoose.Schema({
   password: {
     type: String,
   },
+  role: {
+    type: String,
+  }
 });
 
 const UserModel = mongoose.model("User", userShema);
