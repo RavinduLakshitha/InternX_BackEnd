@@ -9,6 +9,10 @@ const userShema = new mongoose.Schema({
     type: String,
     unique: true,
   },
+  role:{
+    type: String,
+    unique: true,
+  },
   password: {
     type: String,
     unique: true,
