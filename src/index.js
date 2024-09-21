@@ -13,6 +13,7 @@ const bodyParser = require('body-parser');
 const advertisementRoutes = require('../src/routes/advertismentRoutes');
 const studentProfiles = require('../src/routes/studentProfile');
 const companyProfiles = require('../src/routes/companyProfile');
+const resumeRoutes = require('./routes/resumeRoutes');
 const mongoose = require("mongoose");
 require('dotenv').config();//removed existing code and change it
 const path = require('path');
@@ -46,6 +47,7 @@ app.use("/company", router3);
 app.use('/api', advertisementRoutes);
 app.use('/api', studentProfiles);
 app.use('/api/company', companyProfiles);
+app.use('/api', resumeRoutes);
 
 
 app.listen(port, () => {
